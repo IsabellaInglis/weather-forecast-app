@@ -90,6 +90,7 @@ main {
   display: flex;
   margin-top: 30px;
   text-align: center;
+  justify-content: space-between;
 }
 
 .forecast-date {
