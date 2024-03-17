@@ -60,12 +60,8 @@ function searchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  return days[date.getDay()];
-}
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", searchSubmit);
 
 function getForecast(city) {
   let apiKey = "dc6760cf7088c245e5a42a646bco203t";
@@ -74,36 +70,29 @@ function getForecast(city) {
 }
 
 function displayForecast(response) {
+  console.log(response.data);
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
-  response.data.daily.forEach(function (day, index) {
-    if (index < 5) {
-      forecastHtml =
-        forecastHtml +
-        `<div class="row">
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="row">
             <div class="col-2">
-              <div class="forecast-date">${formatDay(day.time)}</div>
-              <div>
-              <img src="${day.condition.icon_url}" alt="" class="forecast-image"
+              <div class="forecast-date">${day}</div>
+              <img
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png"
+                alt=""
               />
-              </div>
               <div class="forecast-temperatures">
-                <span class="forecast-temp-max">${Math.round(
-                  day.temperature.maximum
-                )}</span
-                ><span class="forecast-temp-min"> ${Math.round(
-                  day.temperature.minimum
-                )}</span>
+                <span class="forecast-temp-max">18</span
+                ><span class="forecast-temp-min"> 12</span>
               </div>
             </div>
           </div>`;
-    }
   });
   let forecast = document.querySelector("#forecast");
   forecast.innerHTML = forecastHtml;
 }
 
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", searchSubmit);
-
-searchCity("London");
+searchCity("Paris");
