@@ -102,15 +102,21 @@ main {
 
 .forecast-date {
   font-size: 16px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .forecast-temperatures {
-  font-size: 14px;
+  font-size: 16px;
   color: #e28b33;
 }
+.forecast-temp-max {
+  font-weight: bold;
+  padding: 0 10px;
+}
+
 .forecast-temp-min {
   opacity: 0.5;
+  padding: 0 10px;
 }
 
 footer {
